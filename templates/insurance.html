@@ -1,0 +1,352 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no"/>
+    <title>Home | Sort My Car</title>
+
+    <link rel="shortcut icon" href="assets/images/favicon.png" type="image/png" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+   
+    <link rel="stylesheet" type="text/css" href="{% static '/css/slim-icons.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static '/css/owl.theme.default.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static '/css/owl.carousel.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static '/css/form-control.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static '/css/jquery-ui.min.css' %}" />
+    <link rel="stylesheet" type="text/css"  href="{% static '/css/bootstrap.css' %}">
+    <link rel="stylesheet" type="text/css"  href="{% static '/css/style.css' %}">
+
+    <!--[if lt IE 9]>
+                <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+            <![endif]-->
+
+            <!--[if IE 7]>     <html class="ie7"> <![endif]-->
+            <!--[if IE 8]>     <html class="ie8"> <![endif]-->
+            <!--[if IE 9]>     <html class="ie9"> <![endif]-->
+            <!--[if !IE]>
+    <html> <![endif]-->
+
+</head>
+<body>
+
+    <div id="main-wrapper">
+
+        <header class="bg-white py-1 shadow-sm bg-white site-header">
+            <div class="container">
+                <div class="row">
+                    <nav class="navbar navbar-expand-lg navbar-light w-100">
+                        <a class="navbar-brand" href="/"><img src="{% static '/images/logo-01.png' %}"></a>
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+
+                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                            <ul class="navbar-nav ml-auto">
+                                <li class="nav-item">
+                                    <a class="nav-link px-3 text-secondary" href="/">Home </a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a class="nav-link px-3 text-secondary" href="{% url 'valuation'%}">Valuation</a>
+                                </li>
+
+                                <li class="nav-item active">
+                                    <a class="nav-link px-3 text-secondary" href="{% url 'insurance'%}">Insurance</a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a class="nav-link px-3 text-secondary" href="{% url 'aboutus'%}">About Us</a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a class="nav-link px-3 text-secondary" href="tel:254739881818"><i class="bi bi-telephone"></i> +254 739 881818</a>
+                                </li>
+
+                            </ul>
+                        </div>
+                    </nav>
+                </div>
+
+            </div>
+
+        </header>
+
+        <div class="content-wrapper pt-2 pt-md-5">
+
+            <div class="action-wrapper mb-4" style="background-image: url( '/static/images/pattern-2.png')">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12 col-md-6">
+                            <div class="card mb-4 border-0">
+
+                                <div class="card-header shadow-sm bg-white border-0 mb-4">
+                                    <h4 class="d-block w-100 mb-1 text-center mb-4 text-secondary">Provide insurance and vehicle details</h4>
+                                </div>
+
+                                <div class="card-body shadow-sm bg-white py-4">
+
+                                    <form action="{% url 'insurance_companies' %}" method="POST">
+                                        {% csrf_token %}
+
+                                        <div class="form-outline mb-4 category">
+                                            <label class="form-label mb-1" for="category">Choose category of Insurance</label>
+                                            <select  class="form-control" id="category" name="category" required>
+                                                <option value="third_party">Third Party Only (TPO)</option>
+                                                <option value="comprehensive">Comprehensive</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="form-outline mb-4 coverType">
+                                            <label class="form-label mb-1" for="coverType">Select the type of cover</label>
+                                            <select class="form-control" id="coverType" name="coverType" required>
+                                               <option value="" selected disabled hidden label>Select the type of cover</option>
+                                                <option value="private">Private</option>
+                                                <option value="commercial">Commercial</option>
+                                                <option value="psv">PSV</option>
+                                                <option value="motor_trade">Motor Trade (road risk)</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="form-outline mb-4 period">
+                                            <label class="form-label mb-1" for="period">Choose the period of Insurance</label>
+                                            <select class="form-control" id="period" name="period" required>
+                                               <option value="" selected disabled hidden label>Choose the period of Insurance</option>
+                                                <option value="annual" >One Year</option>
+                                                <option value="tor_cover">One month expiring (TOR)</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="form-outline mb-4 make">
+                                            <label class="form-label mb-1" >Select the make of your car</label>
+                                            <select class="form-control" id="make" name="make" required>
+                                                <option value="" selected disabled hidden>Select the Make</option>
+                                                	{% for index, row in make.iterrows %}
+						                        	<option
+                                                            value="{{row.make_id}}">{{row.make}}</option>
+					                                {% endfor %}
+                                            </select>
+                                        </div>
+
+
+                                        <div class="form-outline mb-4 model">
+                                            <label class="form-label mb-1" for="model">Select the model</label>
+                                            <select  class="form-control" id="model" name="model" required>
+
+                                            </select>
+                                        </div>
+
+                                        <div class="form-outline mb-4 yom">
+                                            <label class="form-label mb-1" for="yom">Year of manufacture</label>
+                                            <input type="text" id="yom"  name="yom" class="form-control" required/>
+                                        </div>
+
+                                        <div class="form-outline mb-4 vtype">
+                                            <label class="form-label mb-1" for="vtype">Type of vehicle</label>
+                                            <select class="form-control" id="vtype" name="vtype" required>
+                                                <option value="" selected disabled hidden label>Type of vehicle</option>
+                                                <option value="personalCar">Personal Car</option>
+                                                <option value="pickup">PickUp</option>
+                                                <option value="truck">Truck</option>
+                                                <option value="bus">Bus/Mini-Bus/Van</option>
+                                                <option value="primeMover">Prime Mover</option>
+                                                <option value="heavy_equipment">Heavy Equipment(cranes/folklift, etc)</option>
+                                                <option value="motor_cycle">Motor Cycle</option>
+                                                <option value="tuktuk">TukTuk</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-outline mb-4 ownership">
+                                            <label class="form-label mb-1" for="ownership">Choose type of owner</label>
+                                            <select class="form-control" id="ownership" name="ownership" required>
+                                                	<option value="" selected disabled hidden label>Choose type of Owner</option>
+                                                    <option value="individual">Individual Owner</option>
+                                                    <option value="company_car">Company/Institution</option>
+                                                    <option value="showroom">Dealer/Showroom</option>
+                                                    <option value="yard">Car selling Yard</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="form-outline mb-4 usage">
+                                            <label class="form-label mb-1" for="usage">How are you using the vehicle</label>
+                                            <select class="form-control" id="usage" name="usage" required>
+                                                	<option value="" selected disabled hidden label>How are you using the vehicle</option>
+                                                    <option value="private">Private Use</option>
+                                                    <option value="own_goods">Transporting goods for own business</option>
+                                                    <option value="general_cartage">Transporting goods on hire</option>
+                                                    <option value="school_bus">School/Church Bus</option>
+                                                    <option value="staff_bus">Staff Bus</option>
+                                                    <option value="institutional">Other Institutional</option>
+                                                    <option value="ambulance">Ambulance and Fire fighter</option>
+                                                    <option value="chauffeur_cab">Chauffeur Driven hire</option>
+                                                    <option value="app_hailing">App Hailing (uber)</option>
+                                                    <option value="personal_taxi">Private Taxi (Yellow Line)</option>
+                                                    <option value="car_hire">Car Hire (self-drive)</option>
+                                                    <option value="driving_school">Driving School</option>
+                                                    <option value="tanker">Tanker (Flammable Liquid)</option>
+                                                    <option value="agriculture">Farming/Forestry</option>
+                                                     <option value="other_equipment">Other Heavy Equipment</option>
+                                                    <option value="Matatu">Carrying Passengers</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="form-outline mb-4 ecc"  id="ecc1">
+                                            <label class="form-label mb-1" for="ecc">Engine Capacity in CC</label>
+                                            <input type="text" id="ecc" name="ecc" class="form-control inp" required />
+                                             <span class="ecc1 d-none  text-danger">A valid engine capacity is required.</span>
+                                        </div>
+
+                                        <div class="form-outline mb-4 pc">
+                                            <label class="form-label mb-1" for="pc">Passenger capacity</label>
+                                            <input type="text" id="pc" name="pc" class="inp form-control" required />
+                                            <span class="pc1 d-none  text-danger">A valid passenger capacity is required.</span>
+                                        </div>
+
+                                        <div class="form-outline mb-4 tonage">
+                                            <label class="form-label mb-1" for="tonage">Tonage (commercial vehicles)</label>
+                                            <input type="text" id="tonage" name="tonage" class="inp form-control" required />
+                                            <span class="tonage1 d-none  text-danger">A valid passenger capacity is required.</span>
+                                        </div>
+
+                                        <div class=" mb-4 estValue" id="estValue1">
+                                            <label class="form-label mb-1" for="estValue">Estimated Valuation (Ksh)</label>
+                                            <input type="text" id="estValue"  name="estValue" class="form-control inp" required />
+                                            <span class="estValue1 d-none  text-danger">A valid value is required.</span>
+                                        </div>
+                                        <button  type="submit" class="btn submitBtn btn-primary btn-block text-uppercase" value="calculateValuation">Submit</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <footer class="site-footer py-2">
+            <div class="container">
+              <div class="row">
+                <div class="col-12 col-sm-6 text-center text-md-left">
+                    <a class="text-decoration-none text-white" href="#">www.sortmycar.co.ke</a>
+                </div>
+                <div class="col-12 col-sm-6 text-center text-md-right">
+                    <a class="text-decoration-none text-white" href="#">Terms </a> &
+                    <a class="text-decoration-none text-white" href="#">Conditions</a> Apply
+                </div>
+              </div>
+            </div>
+        </footer>
+
+    </div>
+
+<script type="text/javascript" src="{% static '/js/jquery-3.6.0.min.js' %}"></script>
+<script type="text/javascript" src="{% static '/js/popper.min.js' %}"></script>
+<script type="text/javascript" src="{% static '/js/bootstrap.bundle.min.js' %}"></script>
+<script type="text/javascript" src="{% static '/js/bootstrap.min.js' %}"></script>
+<script type="text/javascript" src="{% static '/js/slim-icons.min' %}"></script>
+<script type="text/javascript" src="{% static '/js/jquery-ui.js' %}"></script>
+<script type="text/javascript" src="{% static '/js/form-control.min.js' %}"></script>
+<script type="text/javascript" src="{% static '/js/owl.carousel.js' %}"></script>
+<script type="text/javascript" src="{% static '/js/scripts.js' %}"></script>
+<script src="{% static '/js/script1.js' %}"></script>
+<script src="{% static '/js/script40.js' %}"></script>
+
+<script>
+       $(document).ready(function(){
+
+
+
+         $(document).on('keyup change input','.inp',function (){
+
+                 var tonage={
+                        val:/^(([1-9])[0-9]{0,2})$/,
+                    };
+
+                    if($(this).attr('id')== "tonage" )
+                    {
+                        if (tonage.val.test($(this).val()) && parseInt($(this).val())< 101) {
+
+                            $('.tonage1').addClass('d-none');
+                            $(".submitBtn").prop("disabled",false)
+
+                        } else {
+
+                            $('.tonage1').removeClass('d-none');
+                            $(".submitBtn").prop("disabled",true)
+
+                        }
+                    }
+
+                    var pc={
+                        val:/^([1-9][0-9]{0,2})$/,
+                    };
+                    if($(this).attr('id')== "pc")
+                    {
+                        if (pc.val.test($(this).val())) {
+
+                            $('.pc1').addClass('d-none');
+                            $(".submitBtn").prop("disabled",false)
+
+                        } else {
+
+                            $('.pc1').removeClass('d-none');
+                            $(".submitBtn").prop("disabled",true)
+
+                        }
+                    }
+
+                      var ecc={
+                        val:/^(([1-9])[0-9]{3,5})$/,
+                    };
+                    if($(this).attr('id')== "ecc")
+                    {
+                        if (ecc.val.test($(this).val())) {
+
+                            $('.ecc1').addClass('d-none');
+                            $(".submitBtn").prop("disabled",false)
+
+                        } else {
+
+                            $('.ecc1').removeClass('d-none');
+                            $(".submitBtn").prop("disabled",true)
+
+                        }
+                    }
+
+
+                     var estValue={
+                        val:/^(([1-9])[0-9]{3,8})$/,
+                    };
+                    if($(this).attr('id')== "estValue")
+                    {
+                        if (estValue.val.test($(this).val())) {
+
+                            $('.estValue1').addClass('d-none');
+                            $(".submitBtn").prop("disabled",false)
+
+                        } else {
+
+                            $('.estValue1').removeClass('d-none');
+                            $(".submitBtn").prop("disabled",true)
+
+                        }
+                    }
+
+
+
+
+
+
+
+
+
+         });
+
+    });
+</script>
+
+</body>
+</html>

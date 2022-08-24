@@ -1,0 +1,484 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
+
+* {
+	box-sizing: border-box;
+}
+
+.container_navbar{
+    background-color: #1B63F5; 
+    font-size: 15px;
+	padding: 10px;
+}
+
+.site-header{
+	width: 97.5%;
+	height: 100%;
+}
+
+.site-header .navbar-nav .nav-link:hover {
+	color: #ffffff;
+}
+
+.site-header .navbar-nav .nav-link.active {
+	font-weight: 100;
+}
+
+.account-heading {
+    font-size: 2.5rem;
+}
+
+body{
+	background-color: hsl(241, 87%, 85%);
+	background-image: url('./images/bg-intro-desktop.png');
+	color: #fff;
+	font-family: 'Poppins', sans-serif;
+	font-weight: 500;
+	margin-left: 0.5%;
+	margin-right: 0.5%;
+	position: relative;
+	height: 100%;
+	
+}
+
+.container {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-wrap: wrap;
+	max-width: 1200px; 
+	margin: 0 auto;
+	min-height: 100vh;
+	margin-bottom: 0;
+}
+
+.sideBar{
+	clear: both;
+}
+
+.floatLeft{
+	float: left;
+	width: 30%;
+}
+
+.buyPane{
+    width: 100%;
+	height: auto;
+	margin-bottom: 10px;
+	/*background-color: Fuchsia;
+	float: left;*/
+}
+
+#startBuy span{
+	color: #dee2e6;
+	display: block;
+	position: relative;
+	top: 50%;
+	left: 50%;
+	line-height: 62px;
+	font-size: 20px;
+	transform: translate(-50%, -50%);
+	text-align: center;
+    font-weight:600;  
+}
+
+#startBuy{
+	height: 60px;
+	width: 50%;
+	font-weight: bold;
+	font-size: 20px;
+	border-radius: 10px;
+	display: block;
+	text-align: center;
+	background-image: linear-gradient(115deg,#4fcf70,#fad648,#a767e5,#12bcfe,#44ce7b);
+	margin-left: 40px;
+	margin-bottom: 30px;
+	margin-top: 30px;
+	box-shadow: 0 2px #1B63F5; 
+}
+
+#startBuy:hover{
+	/*box-shadow: 0 2px hsl(0, 100%, 74%);*/
+	cursor: pointer;
+	animation: rotate 0.4s linear infinite;
+}
+
+@keyframes rotate {
+100%{
+	filter: hue-rotate(-360deg);
+}}
+
+#submitKYC{
+	display: none;
+}
+
+.container > div {
+	flex: 1;
+	padding: 0 15px;
+}
+
+h1 {
+	font-size: 30px;
+	line-height: 40px;
+    color: #0d0d0e;
+}
+
+p {
+    margin-top: 10px;
+    opacity: 0.8;
+}
+
+a {
+    color: orangered;
+}
+
+small {
+	display: block;
+	font-size: 11px;
+	font-weight: 500;
+	color: #bbb;
+	margin-top: 15px;
+    text-align:left;
+}
+
+small a {
+	color: hsl(0, 100%, 74%);
+	font-weight: 600;
+	text-decoration: none;
+}
+.form-control small {
+	color: hsl(0, 100%, 74%);
+	font-weight: 600;
+	bottom: -24px;
+}
+
+.results_pane{
+	color: #f5f5f5;
+	background-color:#749ff5;
+	font-size: 13px;
+	margin-bottom:20px;
+	border-radius:6px;
+	padding: 7px 10px;
+	font-weight:100px;
+    margin-right:-15px;
+    margin-left:-15px;
+}
+
+#form1 {
+	display:none;
+}
+
+.box p {
+	margin-bottom:0px;
+}
+
+.box-blue {
+	background-color:#749ff5;
+	padding-top: 15px;
+    padding: 10px 5px;
+	color: #ffffff;
+    text-align:center;
+    font-size:15px;
+    margin-left:-15px;
+    margin-right:-15px;
+}
+
+.details_pane{
+	margin-top:60px;
+	margin-bottom:20px;
+}
+
+.box {
+ 	background-color: #fff; 
+	border-radius: 5px;
+	box-shadow: 0 6px rgba(0, 0, 0, 0.2);
+	padding: 10px;
+	margin-top:5px;
+	text-align:center;
+    margin-left:-15px;
+    margin-right:-15px; 
+}
+
+.form-control{
+	position: relative;
+}
+
+.lastForm{
+	margin-bottom:10px;
+    margin-left:-15px;
+    margin-right:-15px;
+    margin-top:10px;
+}
+
+.form-control2{
+	font-size: 14px;
+	width: 100%;
+	margin-top: 10px;
+	margin-bottom: 8px;
+}
+
+table, th, td{
+/* 	border: 1px solid rgb(10, 0, 0); */
+	border-collapse: collapse;
+	padding: 8px;
+	width: fit-content;
+}
+
+th, td{
+    border-color: #1B63F5;
+}
+
+td{
+    color: #black;
+    opacity:0.8;
+    font-weight:500;
+}
+
+th {
+    font-size:14px;
+    font-weight:100;
+}
+
+table{
+	margin-bottom: 10px;
+	
+}
+
+#payButton{
+    background-color:#2da44e;
+	border-radius:5px;
+	border: 1px solid #2da44e;
+	box-shadow: 0 2px #558a05;
+	color:#fff;
+	cursor:pointer;
+	display:block;
+	font-family:'Poppins', sans-serif;
+	font-size:14px;
+	font-weight:500;
+	padding: 15px 25px;
+	letter-spacing: 1px;
+	text-transform: uppercase;
+	width: 100%;
+    margin-top:15px;
+}
+
+#payButton:focus {
+	outline: none;
+}
+
+#payButton:active {
+	box-shadow: 0 0 #2da44e;
+	transform: translateY(2px);
+}
+
+#payButton:hover {
+	background-color: #2da44e;
+	box-shadow: 0 2px #558a05;
+}
+
+/* format the selection and input fields of the forms */
+select,
+input{
+	border-radius: 5px;
+	border: 1.3px solid hsl(246, 25%, 77%);
+	font-family: 'Poppins', sans-serif;
+	font-size: 15px;
+	padding: 15px 10px;
+	display: block;
+	width: 100%;
+	color: #0d0d0e;
+}
+
+input:focus,
+select:focus{
+	border: 1.3px solid hsl(248, 32%, 49%);
+	outline: none;
+}
+
+input[type=submit] {
+    background-color: #1B63F5;
+	border-radius: 5px;
+	border: 1px solid orangered;
+	box-shadow: 0 2px orangered;
+	color: #fff;
+	cursor: pointer;
+	display: block;
+	font-family: 'Poppins', sans-serif;
+	font-size: 14px;
+	font-weight: 500;
+	padding: 15px 25px;
+	letter-spacing: 1px;
+	text-transform: uppercase;
+	width: 100%;
+}
+
+input[type=submit]:focus {
+	outline: none;
+}
+
+input[type=submit]:active {
+	box-shadow: 0 0 orangered;
+	transform: translateY(2px);
+}
+
+input[type=submit]:hover {
+	background-color:  #1B63F5;
+	box-shadow: 0 2px  #1B63F5;
+}
+
+.finalLinks{
+    margin-top:10px;
+    margin-bottom:10px;
+}
+
+.finalLinks a {
+	background-image: linear-gradient(115deg,#4fcf70,#fad648,#a767e5,#12bcfe,#44ce7b);
+	font-size: 15px;
+	border-radius: 20px;
+	color: #f5f5f5;
+	/* height: 50px; */
+	display: block;
+	text-align: center;
+	text-decoration: none;
+	cursor: pointer;
+	padding: 20px;
+	max-width: 300px;
+}
+
+.finalLinks a:active {
+	box-shadow: 0 2px #1B63F5;
+	transform: translateY(2px);
+}
+
+.finalLinks a:hover{
+	box-shadow: 0 2px #1B63F5;
+	cursor: pointer;
+	animation: rotate 0.4s linear infinite;
+}
+
+.alert-heading{
+	text-align: center;
+}
+
+footer {
+	background-color: #1B63F5;
+	font-size: 15px;
+	margin-top: 0px;
+	padding-top: 0px;
+	color:  #B2C9CF;
+	margin-bottom: 0px;
+	max-width: auto;
+	margin-right: 0 auto;
+}
+
+footer small {
+	color: #bbb;
+}
+
+.footer-copyright{
+	text-align: center;
+	clear: both;
+    font-size: 13px;
+}
+
+.footer_image img{
+	float: left;
+	width: 30%;
+	height: 200px;
+}
+.container-fluid{
+	float: right;
+	width: 60%;
+	clear: right;
+}
+
+input[type="radio"] {
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+	border-radius: 50%;
+	width: 1rem;
+	height: 15px;
+	border: 2px solid black;
+	transition: 0.2s all linear;
+	margin-right: 5px;
+	position: relative;
+	top: 4px;
+}
+  
+input[type="radio"]:checked {
+    border: 3px solid orangered;
+    outline: unset !important /* I added this one for Edge (chromium) support */
+}
+
+@media screen and (max-width: 700px) {
+	h1 {
+		text-align: center;
+	}
+
+	p {
+		text-align: center;
+	}
+
+	.container {
+		flex-direction: column;
+	}
+	.footer_image{
+		margin-bottom: 5px;
+	}
+	.container-fluid{
+		float:none;
+		width: 100%;
+	}
+	.footer_image img{
+		height: 155px;
+	}
+
+	#sideBarh1{
+		opacity: 0;
+	}
+    
+    .col-md-9{
+	text-align: justify!important;
+    }
+    
+    #startBuy{
+	height: 70px;
+	width: 80%;
+    }
+
+}
+
+/*preloader image
+.loader {
+	height: 50px;
+	transform-origin: bottom center;
+	animation: rotate 3s linear infinite;
+  }
+  
+  .circle {
+	display: inline-block;
+	background-color: #1B63F5;
+	height: 40px;
+	width: 40px;
+	border-radius: 50%;
+	transform: scale(0);
+	animation: grow 1.5s linear infinite;
+	margin: -10px;
+  }
+  
+  .circle:nth-child(2) {
+	background-color: orangered;
+	animation-delay: 0.75s;
+  }
+  
+  @keyframes rotate {
+	to {
+	  transform: rotate(360deg);
+	}
+  }
+  
+  @keyframes grow {
+	50% {
+	  transform: scale(1);
+	}
+  }

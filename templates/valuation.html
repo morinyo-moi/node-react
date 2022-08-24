@@ -1,0 +1,284 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no"/>
+    <title>Home | Sort My Car</title>
+
+    <link rel="shortcut icon" href="assets/images/favicon.png" type="image/png" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+
+
+    <link rel="stylesheet" type="text/css" href="{% static '/css/slim-icons.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static '/css/owl.theme.default.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static '/css/owl.carousel.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static '/css/justselect.css' %}">
+    <link rel="stylesheet" type="text/css"  href="{% static '/css/bootstrap.css' %}">
+    <link rel="stylesheet" type="text/css"  href="{% static '/css/style.css' %}">
+
+    <!--[if lt IE 9]>
+                <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+            <![endif]-->
+
+            <!--[if IE 7]>     <html class="ie7"> <![endif]-->
+            <!--[if IE 8]>     <html class="ie8"> <![endif]-->
+            <!--[if IE 9]>     <html class="ie9"> <![endif]-->
+            <!--[if !IE]>
+    <html> <![endif]-->
+
+</head>
+<body>
+
+    <div id="main-wrapper">
+
+        <header class="bg-white py-1 shadow-sm bg-white site-header">
+            <div class="container">
+                <div class="row">
+                    <nav class="navbar navbar-expand-lg navbar-light w-100">
+                        <a class="navbar-brand" href="/"><img src="{% static '/images/logo-01.png' %}"></a>
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+
+                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                            <ul class="navbar-nav ml-auto">
+                                <li class="nav-item">
+                                    <a class="nav-link px-3 text-secondary" href="/">Home </a>
+                                </li>
+                                <li class="nav-item active">
+                                    <a class="nav-link px-3 text-secondary" href="{% url 'valuation'%}">Valuation</a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a class="nav-link px-3 text-secondary" href="{% url 'insurance'%}">Insurance</a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a class="nav-link px-3 text-secondary" href="{% url 'aboutus' %}">About Us</a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a class="nav-link px-3 text-secondary" href="tel:254739881818"><i class="bi bi-telephone"></i> +254 739 881818</a>
+                                </li>
+
+                            </ul>
+                        </div>
+                    </nav>
+                </div>
+
+            </div>
+
+        </header>
+
+        <div class="content-wrapper pt-2 pt-md-5">
+
+            <div class="action-wrapper mb-4">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12 col-md-6">
+                            <div class="card mb-3 border-0">
+
+                                <div class="card-header shadow-sm bg-white border-0 mb-3">
+                                    <h4 class="d-block w-100 mb-1 text-center mb-3 text-secondary">Tell us about your Motor Vehicle</h4>
+                                    <h6 class="d-block w-100 small text-center text-secondary">*This product is designed for Private Motor Vehicle</h6>
+                                </div>
+
+                                <div class="card-body shadow-sm bg-white py-4">
+
+                                    <form action="{% url 'valuate' %}" method="POST">
+                                        {% csrf_token %}
+                                        <div class="form-outline mb-3">
+                                            <label class="form-label mb-1" for="make">Select the Make of your car</label>
+                                            <select class="form-control"  id="make" name="make" required>
+                                                    <option value="" selected disabled hidden>Select the Make</option>
+                                                	{% for index, row in make.iterrows %}
+						                        	<option class="make-id" value="{{row.make_id}}">{{row.make}}</option>
+					                                {% endfor %}
+                                            </select>
+                                        </div>
+
+                                        <div class="form-outline mb-3">
+                                            <label class="form-label mb-1" for="model">Select Car Model</label>
+                                            <select class="form-control" id="model" name="model" required>
+
+                                            </select>
+                                        </div>
+
+                                        <div class="form-outline mb-3">
+                                            <label class="form-label mb-1" for="trim">Trim and any other details (optional)</label>
+                                            <input type="text" id="trim" name="trim" class="form-control inp"  />
+                                            <span class="trim d-none inp text-danger">Trim detail is required.</span>
+
+                                        </div>
+
+                                        <div class="form-outline mb-3">
+                                            <label class="form-label mb-1" for="yom">Year of Manufacture</label>
+                                            <input type="text" id="yom" name="yom" class="form-control inp" required placeholder="YYYY" />
+                                            <span class="yom d-none inp text-danger">A valid year of manufacture is required.</span>
+
+
+                                        </div>
+
+                                        <div class="form-outline mb-3">
+                                            <label class="form-label mb-1" for="ecc">Engine Capacity in CC</label>
+                                            <input type="text" id="ecc"  name="ecc" class="form-control inp" required/>
+                                            <span class="ecc d-none inp text-danger">A valid engine capacity is required.</span>
+                                        </div>
+
+                                        <div class="form-outline mb-3">
+                                            <label class="form-label mb-1" for="mileage">Mileage in Kilometers</label>
+                                            <input type="text" id="mileage" name="mileage" class="form-control inp" required />
+                                            <span class="mileage d-none inp text-danger">A valid mileage is required.</span>
+                                        </div>
+
+                                        <div class="form-outline mb-3">
+                                            <label class="form-label mb-1" for="transmission">Transmission</label>
+                                            <select class="justselect" id="transmission" name="transmission" required>
+                                                <!-- <option selected="selected" value="transmission">Automatic</option> -->
+                                                <option value="Automatic" selected>Automatic</option>
+                                                <option value="Manual">Manual</option>
+                                                <option value="CVT">CVT</option>
+                                            </select>
+
+                                        </div>
+
+                                        <div class="form-outline mb-3">
+                                            <label class="form-label mb-1" for="fuel">Consumption</label>
+                                            <select class="justselect" id="fuel" name="fuel" required>
+                                                <option value="Petrol" selected >Petrol</option>
+                                                <option value="Diesel">Diesel</option>
+                                                <option value="Hybrid">Hybrid</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="form-outline mb-3">
+                                            <label class="form-label mb-1" for="usage">Used Where</label>
+                                            <select class="justselect" id="usage" name="usage" required>
+                                                <!-- <option selected="selected" value="consumption">Locally Used</option> -->
+                                                <option value="Locally used" selected>Locally Used</option>
+                                                <option value="Foreign used">Foreign Used</option>
+                                            </select>
+                                        </div>
+
+                                        <button  type="submit" class="btn valuateBtn btn-primary btn-block text-uppercase" >Calculate Valuation</button>
+
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <footer class="site-footer py-2 py-md-4">
+            <div class="container">
+              <div class="row">
+                <div class="col-12 col-sm-6 text-center text-md-left">
+                    <a class="text-decoration-none text-white" href="#">www.sortmycar.co.ke</a>
+                </div>
+                <div class="col-12 col-sm-6 text-center text-md-right">
+                    <a class="text-decoration-none text-white" href="#">Terms </a> &
+                    <a class="text-decoration-none text-white" href="#">Conditions</a> Apply
+                </div>
+              </div>
+            </div>
+        </footer>
+
+    </div>
+
+<script type="text/javascript" src="{% static '/js/jquery-3.6.0.min.js' %}"></script>
+<script type="text/javascript" src="{% static '/js/popper.min.js' %}"></script>
+<script type="text/javascript" src="{% static '/js/bootstrap.bundle.min.js' %}"></script>
+<script type="text/javascript" src="{% static '/js/bootstrap.min.js' %}"></script>
+<script type="text/javascript" src="{% static '/js/slim-icons.min' %}"></script>
+<script type="text/javascript" src="{% static '/js/justselect.min.js' %}"></script>
+<script type="text/javascript" src="{% static '/js/owl.carousel.js' %}"></script>
+<script type="text/javascript" src="{% static '/js/scripts.js' %}"></script>
+<script src="{% static '/js/script1.js' %}"></script>
+
+<script>
+       $(document).ready(function(){
+       $(document).on('click','.make-id',function(){
+
+       });
+
+         $(document).on('keyup change input','.inp',function (){
+
+                var name_pattern={
+                    val:/^([a-zA-Z0-9\s\'\.]{2,100})$/,
+                };
+
+
+
+
+                 var yom={
+                        val:/^((19|20)[0-9]{2})$/,
+                    };
+                    if($(this).attr('id')== "yom")
+                    {
+                        if (yom.val.test($(this).val())) {
+
+                            $('.yom').addClass('d-none');
+                            $(".valuateBtn").prop("disabled",false)
+
+                        } else {
+
+                            $('.yom').removeClass('d-none');
+                            $(".valuateBtn").prop("disabled",true)
+
+                        }
+                    }
+
+                    var ecc={
+                        val:/^(([1-9])[0-9]{3,5})$/,
+                    };
+                    if($(this).attr('id')== "ecc")
+                    {
+                        if (ecc.val.test($(this).val())) {
+
+                            $('.ecc').addClass('d-none');
+                            $(".valuateBtn").prop("disabled",false)
+
+                        } else {
+
+                            $('.ecc').removeClass('d-none');
+                            $(".valuateBtn").prop("disabled",true)
+
+                        }
+                    }
+
+
+
+                      var mileage={
+                        val:/^([1-9][0-9]{3,7})$/,
+                    };
+                    if($(this).attr('id')== "mileage")
+                    {
+                        if (mileage.val.test($(this).val())) {
+
+                            $('.mileage').addClass('d-none');
+                            $(".valuateBtn").prop("disabled",false)
+
+                        } else {
+
+                            $('.mileage').removeClass('d-none');
+                            $(".valuateBtn").prop("disabled",true)
+
+                        }
+                    }
+
+
+         });
+
+    });
+</script>
+
+</body>
+</html>

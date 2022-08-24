@@ -1,0 +1,397 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width,initial-scale=1" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no" />
+        <title>Home | Sort My Car</title>
+
+        <link rel="shortcut icon" href="assets/images/favicon.png" type="image/png" />
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" />
+        <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+        
+        <link rel="stylesheet" type="text/css" href="{% static '/css/slim-icons.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static '/css/owl.theme.default.min.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static '/css/owl.carousel.min.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static '/css/justselect.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static '/css/jquery-ui.min.css' %}" />
+        <link rel="stylesheet" type="text/css"  href="{% static '/css/bootstrap.css' %}">
+        <link rel="stylesheet" type="text/css"  href="{% static '/css/style.css' %}">
+
+        
+
+        <!--[if lt IE 9]>
+            <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+
+        <!--[if IE 7]>     <html class="ie7"> <![endif]-->
+        <!--[if IE 8]>     <html class="ie8"> <![endif]-->
+        <!--[if IE 9]>     <html class="ie9"> <![endif]-->
+        <!--[if !IE]>
+    <html> <![endif]-->
+    </head>
+    <body>
+        <div id="main-wrapper">
+            <header class="bg-white py-1 shadow-sm bg-white site-header">
+                <div class="container">
+                    <div class="row">
+                        <nav class="navbar navbar-expand-lg navbar-light w-100">
+                            <a class="navbar-brand" href="/"><img src="{% static '/images/logo-01.png' %}"></a>
+                            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                                <span class="navbar-toggler-icon"></span>
+                            </button>
+
+                            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                                <ul class="navbar-nav ml-auto">
+                                    <li class="nav-item ">
+                                        <a class="nav-link px-3 text-secondary" href="/">Home </a>
+                                    </li>
+
+                                    <li class="nav-item">
+                                        <a class="nav-link px-3 text-secondary" href="{% url 'valuation' %}">Valuation</a>
+                                    </li>
+
+                                    <li class="nav-item active">
+                                        <a class="nav-link px-3 text-secondary" href="{% url 'insurance' %}">Insurance</a>
+                                    </li>
+
+                                    <li class="nav-item">
+                                        <a class="nav-link px-3 text-secondary" href="{% url 'aboutus' %}">About Us</a>
+                                    </li>
+
+                                    <li class="nav-item">
+                                        <a class="nav-link px-3 text-secondary" href="tel:254739881818"><i class="bi bi-telephone"></i> +254 739 881818</a>
+                                    </li>
+
+                                </ul>
+                            </div>
+                        </nav>
+                    </div>
+
+                </div>
+            </header>
+
+            <div class="content-wrapper pt-2 pt-md-5">
+                <div class="action-wrapper mb-4">
+                    <div class="quote-summary">
+                        <div class="container">
+                            <div class="row justify-content-center mb-3 mb-md-5">
+                                <div class="col-md-8 text-center">
+                                    <h4 class="mb-3">Payment</h4>
+                                    <h6 class="font-weight-normal">Confirm the details below okay and proceed to pay</h6>
+                              <input hidden class="phoneNo" type="text" value="{{phone}}">
+                              <input hidden class="regNo" type="text" value="{{regNo}}">
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-12 col-md-6 mx-auto d-flex align-items-stretch">
+                                    <!--------------------------------------------------------------------The estimated market valuation is:----------------------------------------------->
+                                    <div class="card w-100 mb-2 border-0 shadow-sm">
+                                        <div class="card-header shadow-sm bg-primary border-0 mb-2">
+                                            <h6 class="d-block w-100 text-white text-left mb-2 font-weight-normal d-flex justify-content-between"><span>Preferred Insurer:</span> <span>{{PreferredInsurer}}</span></h6>
+
+                                            <h6 class="d-block w-100 text-white text-left mb-2 font-weight-normal d-flex justify-content-between"><span>Starting Date: </span> <span>{{startDate}}</span></h6>
+
+                                            <h4 class="d-block w-100 text-white text-left mb-2 font-weight-normal d-flex justify-content-between"><span>Premium Payable, Ksh:</span> <span id="prePayable">{{premiumPayable}}</span></h4>
+                                            {% if category == "comprehensive" %}
+                                            <h6 class="d-block w-100 mb-1 text-white text-center font-weight-normal">Pay in 3 monthly instalments, Ksh: {{instal_premium}} Comprehensive Only</h6>
+                                            {% endif %}
+                                        </div>
+
+                                        <div class="card-body pb-0 pt-2 shadow-sm bg-white">
+                                            <div class="mb-3 text-center payment-confirmation-header">
+                                                <h4 class="d-block w-100 mb-2 font-weight-normal">Payment & Confirmation</h4>
+                                                <h6 class="d-block w-100 mb-2 font-weight-normal">How would you like to make payment?</h6>
+                                            </div>
+                                        </div>
+
+                                        <div class="payments-options mt-2 px-2">
+                                            <!-- Tabs navs -->
+
+                                            <ul class="tabs">
+                                                <li id="fullPayment" class="active" rel="tab1">Full Payments</li>
+                                                <li id="twoPayment" rel="tab2">2 instalments</li>
+                                                <li id="threePayment" rel="tab3">3 instalments</li>
+                                            </ul>
+                                            <div class="tab_container">
+                                                <div id="tab1" class="tab_content">
+                                                    <div class="col mb-3 border-bottom pb-4">
+                                                        <div class="mpesa-logo d-block w-100 text-center"><img src="{% static '/images/m-pesa-logo.png' %}"></div>
+
+                                                        <div class="form-outline mb-3">
+                                                            <label class="form-label mb-2" for="tamount">Amount</label>
+                                                            <input type="text" readonly id="tamount" class="form-control" value="" />
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <input class="confirm" type="checkbox" name="checkGrp1" id="confirm" />
+                                                            <label for="confirm">By checking you accept Terms and Conditions of SortMyCar</label>
+                                                        </div>
+
+                                                        <a   type="submit"  href="{% url 'confirmation' %}" class="pay confirmation_btn btn btn-success btn-block text-uppercase">Make Payments</a>
+                                                        <button  disabled class=" pay2 btn btn-success btn-block text-uppercase">Make Payments</button>
+                                                        <button   class=" d-none pay21 btn btn-success btn-block text-uppercase">Sending push notification...</button>
+                                                    </div>
+
+                                                    <div class="col">
+                                                        <h6 class="d-block w-100 mb-2 text-primary text-center font-weight-normal">Or Use Paybill Number</h6>
+
+                                                        <div class="paybill-options">
+                                                            <ul class="mb-3">
+                                                                <li>Go to M-PESA Menu on your mobile Phone</li>
+                                                                <li>Select Lipa na M-PESA</li>
+                                                                <li>Enter {{mpesaPaybill}} as the Business Number</li>
+                                                                <li>Enter KCM 321P as ACCOUNT NUMBER</li>
+                                                                <li>Enter amount (NO COMMAS) e.g 7575</li>
+                                                                <li>Enter your M-PESA PIN and send You will receive an SMS confirming the transaction</li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- #tab1 -->
+
+                                                <div id="tab3" class="tab_content">
+                                                    <div class="col mb-3 border-bottom pb-4">
+                                                        <h6 class="d-block w-100 mb-2 text-danger text-center font-weight-normal">Pay using Mpesa Express</h6>
+
+                                                        <div class="form-outline mb-3">
+                                                            <label class="form-label mb-2" for="threeInstalments">Amount</label>
+                                                            <input type="text" readonly id="threeInstalments" class="form-control"  />
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <input class="confirm" type="checkbox" name="checkGrp1" id="check1_pt1" />
+                                                            <label for="check1_pt1">By checking you accept Terms and Conditions of SortMyCar</label>
+                                                        </div>
+
+                                                        <a type="submit" href="{% url 'confirmation' %}" class=" confirmation_btn pay btn btn-success btn-block text-uppercase">Make Payments</a>
+                                                        <button  disabled class=" pay2 btn btn-success btn-block text-uppercase">Make Payments</button>
+                                                        <button   class=" d-none pay21 btn btn-success btn-block text-uppercase">Sending push notification...</button>
+
+                                                    </div>
+
+                                                    <div class="col">
+                                                        <h6 class="d-block w-100 mb-2 text-primary text-center font-weight-normal">Or Use Paybill Number</h6>
+
+                                                        <div class="paybill-options">
+                                                            <ul class="mb-3">
+                                                                <li>Go to M-PESA Menu on your mobile Phone</li>
+                                                                <li>Select Lipa na M-PESA</li>
+                                                                <li>Enter {{mpesaPaybill}} as the Business Number</li>
+                                                                <li>Enter KCM 321P as ACCOUNT NUMBER</li>
+                                                                <li>Enter amount (NO COMMAS) e.g 7575</li>
+                                                                <li>Enter your M-PESA PIN and send You will receive an SMS confirming the transaction</li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- #tab2 -->
+
+                                                <div id="tab2" class="tab_content">
+                                                    <div class="col mb-3 border-bottom pb-4">
+                                                        <h6 class="d-block w-100 mb-2 text-danger text-center font-weight-normal">Pay using Mpesa Express</h6>
+
+                                                        <div class="form-outline mb-3">
+                                                            <label class="form-label mb-2" for="twoInstalments">Amount</label>
+                                                            <input type="text" readonly id="twoInstalments" class="form-control" value="" />
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <input class="confirm" type="checkbox" name="checkGrp1" id="check1_Opt1" />
+                                                            <label for="check1_Opt1">By checking you accept Terms and Conditions of SortMyCar</label>
+                                                        </div>
+
+                                                        <a type="submit" href="{% url 'confirmation' %}" class=" confirmation_btn pay btn btn-success btn-block text-uppercase">Make Payments</a>
+                                                        <button  disabled class=" pay2 btn btn-success btn-block text-uppercase">Make Payments</button>
+                                                        <button   class=" d-none pay21 btn btn-success btn-block text-uppercase">Sending push notification...</button>
+
+                                                    </div>
+
+                                                    <div class="col">
+                                                        <h6 class="d-block w-100 mb-2 text-primary text-center font-weight-normal">Or Use Paybill Number</h6>
+
+                                                        <div class="paybill-options">
+                                                            <ul class="mb-3">
+                                                                <li>Go to M-PESA Menu on your mobile Phone</li>
+                                                                <li>Select Lipa na M-PESA</li>
+                                                                <li>Enter {{mpesaPaybill}} as the Business Number</li>
+                                                                <li>Enter KCM 321P as ACCOUNT NUMBER</li>
+                                                                <li>Enter amount (NO COMMAS) e.g 7575</li>
+                                                                <li>Enter your M-PESA PIN and send You will receive an SMS confirming the transaction</li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div    class="modal fade"  data-backdrop="static" data-keyboard="false" id="paymentConfirm" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title text-center" id="exampleModalLongTitle">You are almost done.</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+
+                            <div class="row">
+                                <div class="col-md-12" style="padding:25px;">
+                                    Please check your phone
+                                    and enter your M-Pesa PIN to complete the payment transaction. Click "Verify" after you have received the payment confirmation message.
+                                </div>
+                            </div>
+
+                            <input type="hidden" name="paycode" id="paycodefield">
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-danger" id="verifyPayment">Verify</button>
+                            <button class="btn btn-danger d-none" id="verify-spinner" type="button" disabled>
+                                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                Verifying...
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <footer class="site-footer py-2 py-md-4">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12 col-sm-6 text-center text-md-left">
+                            <a class="text-decoration-none text-white" href="#">www.sortmycar.co.ke</a>
+                        </div>
+                        <div class="col-12 col-sm-6 text-center text-md-right"><a class="text-decoration-none text-white" href="#">Terms </a> & <a class="text-decoration-none text-white" href="#">Conditions</a> Apply</div>
+                    </div>
+                </div>
+            </footer>
+
+            <!--------------------------------------------------------------------policy-details----------------------------------------------->
+        </div>
+<script type="text/javascript" src="{% static '/js/jquery-3.6.0.min.js' %}"></script>
+<script type="text/javascript" src="{% static '/js/popper.min.js' %}"></script>
+<script type="text/javascript" src="{% static '/js/bootstrap.bundle.min.js' %}"></script>
+<script type="text/javascript" src="{% static '/js/bootstrap.min.js' %}"></script>
+<script type="text/javascript" src="{% static '/js/slim-icons.min' %}"></script>
+<script type="text/javascript" src="{% static '/js/jquery-ui.js' %}"></script>
+<script type="text/javascript" src="{% static '/js/justselect.min.js' %}"></script>
+<script type="text/javascript" src="{% static '/js/owl.carousel.js' %}"></script>
+<script type="text/javascript" src="{% static '/js/scripts.js' %}"></script>
+
+<script>
+    $(document).ready(function(){
+      var description="third party";
+      var phone=0;
+      var regNum="";
+      {% if category == "comprehensive" %}
+      description="comprehensive";
+
+      {%endif%}
+
+
+       var premium = $("#prePayable").html().replace(',', '')
+       var amount=premium;
+       $("#tamount").val(premium)
+       $(document).on("click","#fullPayment",function(e){
+       $('.confirm').prop("checked",false)
+       $(".pay").addClass('d-none')
+       $(".pay21").addClass('d-none')
+       $(".pay2").removeClass('d-none')
+       var premium = $("#prePayable").html().replace(',', '')
+       amount=premium
+       $("#tamount").val(premium)
+
+       })
+
+       $(document).on("click","#twoPayment",function(e){
+       $('.confirm').prop("checked",false)
+       $(".pay").addClass('d-none')
+       $(".pay21").addClass('d-none')
+       $(".pay2").removeClass('d-none')
+       var premium = $("#prePayable").html().replace(',', '')
+       $("#twoInstalments").val(Math.round(premium/2))
+       amount=Math.round(premium/2)
+       })
+
+       $(document).on("click","#threePayment",function(e){
+       $('.confirm').prop("checked",false)
+       $(".pay").addClass('d-none')
+       $(".pay21").addClass('d-none')
+       $(".pay2").removeClass('d-none')
+       var premium = $("#prePayable").html().replace(',', '')
+       $("#threeInstalments").val(Math.round(premium/3))
+       amount=Math.round(premium/3)
+       })
+
+       $(".pay").addClass('d-none')
+       $(document).on("click",".confirm",function(e){
+        if($(this).prop("checked"))
+        {
+          $(".pay").removeClass('d-none')
+          $(".pay2").addClass('d-none')
+        }else{
+          $(".pay").addClass('d-none')
+          $(".pay2").removeClass('d-none')
+        }
+       })
+
+       $(document).on("click",".confirmation_btn",function(e){
+         e.preventDefault()
+         $(".pay21").removeClass('d-none')
+         $(".pay").addClass('d-none')
+
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        $.ajax({
+
+            type: 'GET',
+
+            url: '/confirmation',
+
+            data: {
+                amount:amount,
+                description:description,
+                phoneNo:$(".phoneNo").val(),
+                regNo:$(".regNo").val(),
+            },
+            success: function (response) {
+                console.log(response.obj.CheckoutRequestID)
+                if(response.obj.CheckoutRequestID != undefined )
+                {
+                  window.location.href="/showConfirmation"
+<!--                     $('#paymentConfirm').modal('show')-->
+                }
+
+                $(".pay").removeClass('d-none')
+                $(".pay21").addClass('d-none')
+            },error: function(){
+                $(".pay").removeClass('d-none')
+                $(".pay21").addClass('d-none')
+            }
+        });
+       })
+    })
+
+
+
+</script>
+</body>
+</html>

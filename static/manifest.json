@@ -1,0 +1,22 @@
+{
+"name": "SortMyCar Insurance",
+"short_name": "SortMyCar Insurance",
+"start_url": "/",
+"display": "standalone",
+"background_color": "hsl(241, 87%, 85%)",
+"theme_color": "#1B63F5",
+"description": "An app to insure your car, FAST.",
+
+"icons": [
+    {
+    "src": "/static/images/sortmycarke-logo.png",
+    "sizes": "200x200",
+    "type": "image/png"
+    },
+    {
+    "src": "/static/images/car_icon_x192.png",
+    "sizes": "192x192",
+    "type": "image/png"
+    }
+]
+}
